@@ -46,7 +46,17 @@ In the job "displaymsg" change the action is with use actions/first-interaction@
 
 Change the message in issue-message
 
+Commit the change and push it
+
+Create a new issue in your repos and go to actions to see what happen.
+
 ## Step 3: Run pester tests on Windows
+
+Copy the files and folder from the artefact directory to the root directory of your repos
+This files contains a test script and a module named demomodule.
+The goals is to performe pester test on the module.
+
+
 
 ## Step 4: Run pester tests on Linux
 
