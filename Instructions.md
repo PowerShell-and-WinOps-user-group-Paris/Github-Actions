@@ -22,3 +22,34 @@ create a folder ".github" at the root of the directory
 
 to create a workflow the first step is to create a workflows folder in the .github dir
 
+## Step 2: Display a message when a new issue is open
+
+in the workflow folder create a yaml file
+Copy the code template
+
+```yaml
+name: issue-auto
+
+on: [issues]
+
+jobs:
+  displaymsg:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: <The action>
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: '<Your Message>'
+```
+
+In the job "displaymsg" change the action is with use actions/first-interaction@v1
+
+Change the message in issue-message
+
+## Step 3: Run pester tests on Windows
+
+## Step 4: Run pester tests on Linux
+
+## Step 5: Run pester tests in a container
+
+## Step 6: Add a badge
