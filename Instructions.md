@@ -56,6 +56,12 @@ Copy the files and folder from the artefact directory to the root directory of y
 This files contains a test script and a module named demomodule.
 The goals is to performe pester test on the module.
 
+Based on the step 1 create a job to execute pester script in the tests folder
+You can use performtest.ps1 
+
+To use a Windows worker, windows-latest 
+You can also use actions/checkout@v1 to copy files in the directory
+
 
 
 ## Step 4: Run pester tests on Linux
@@ -63,3 +69,4 @@ The goals is to performe pester test on the module.
 ## Step 5: Run pester tests in a container
 
 ## Step 6: Add a badge
+
