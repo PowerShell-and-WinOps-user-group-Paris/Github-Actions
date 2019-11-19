@@ -57,16 +57,34 @@ This files contains a test script and a module named demomodule.
 The goals is to performe pester test on the module.
 
 Based on the step 1 create a job to execute pester script in the tests folder
-You can use performtest.ps1 
+You can use performtest.ps1
+
+You will have to use a new yaml file. 
+
+The CI need to run on PUSH and PULL_REQUEST event
 
 To use a Windows worker, windows-latest 
 You can also use actions/checkout@v1 to copy files in the directory
 
+Do not forget to update the Pester module
 
+Bonus: there is an error in the module, try to correct the script
 
 ## Step 4: Run pester tests on Linux
 
+The same as in step 3, create a new YAML file to run the pester script on Linux
+
+Do not forget to install Pester 
+
+Path are not the same !!
+
 ## Step 5: Run pester tests in a container
+
+Instead of creating a CI scripts in the current repository. We can use a Docker image. It allows the separation of the CI/CD logic and the main code. More, the docker image can be use in other repository inside and outside the current account. 
+
+First create a directory, ex dockerCI
+
+inside this directory create a file named Dockerfile (no extension) 
 
 ## Step 6: Add a badge
 
