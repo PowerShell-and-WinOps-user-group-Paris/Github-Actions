@@ -74,7 +74,7 @@ Bonus: there is an error in the module, try to correct the script
 
 The same as in step 3, create a new YAML file to run the pester script on Linux
 
-Do not forget to install Pester 
+Do not forget to install Pester
 
 Path are not the same !!
 
@@ -84,7 +84,61 @@ Instead of creating a CI scripts in the current repository. We can use a Docker 
 
 First create a directory, ex dockerCI
 
-inside this directory create a file named Dockerfile (no extension) 
+inside this directory create a file named Dockerfile (no extension)
+
+edit the file and enter this
+
+``` 
+FROM ubuntu:18.04
+
+RUN apt-get update \
+    && apt-get install wget -y \
+    && wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
+    && apt-get update \
+    && apt-get install -y powershell
+
+ADD entrypoint.ps1 /entrypoint.ps1
+ENTRYPOINT ["pwsh", "/entrypoint.ps1"]
+```
+You have to create the entrypoint.ps1 in the same directory.
+This script will execute the tests in the same way as the last step.
+
+Note: the root directory is $Env:INPUT_DIRECTORY
+
+you need to create a action.yml file 
+
+```yaml 
+name: 'PesterTest'
+author: 'omiossec'
+description: 'Test the Module'
+branding:
+  icon: 'book-open'
+  color: 'blue'
+inputs:
+  directory:
+    description: 'Directory to test'
+    default: "."
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.directory }}
+```
+
+Now try to create a workflow based on this docker image. 
+
+You need to use the same yml from step 4 but you need to use 
+
+ uses: ./<your docker dir>
+
+instead of the script file.
 
 ## Step 6: Add a badge
 
+The last step is to add a badge for each CI workflow
+
+To create a badge simply addapt this template and add it to the README.md file
+
+https://github.com/<GitHub_Account>/<Repos_Name>/workflows/<Workflow_Name>/badge.svg
